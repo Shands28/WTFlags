@@ -1,0 +1,7 @@
+{
+  "name": "WTFlags",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
