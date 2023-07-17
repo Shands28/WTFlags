@@ -1,0 +1,66 @@
+<div class="container">
+  <ng-container *ngIf="countries.length > 0; else gameEnded">
+    <div class="lives_counter-container">
+      <ng-container *ngIf="attempts >= 1">
+        <img src="assets/icon/heart_full.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="attempts >= 2">
+        <img src="assets/icon/heart_full.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="attempts >= 3">
+        <img src="assets/icon/heart_full.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="attempts < 2 && attempts > 0">
+        <img src="assets/icon/heart_empty.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="attempts < 3 && attempts > 0">
+        <img src="assets/icon/heart_empty.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="attempts === 0">
+        <div class="loser_text-container">
+          You have no lives left
+        </div>
+        <div class="loser_text-container">
+          ({{totalAmountOfFlags - countries.length}} Correct / {{3 - attempts}} Errors
+          / {{3 - hintAmount}} Hints used)
+        </div>
+        <div>
+          <button mat-raised-button color="accent" (click)="initializeGame()">Reset Game</button>
+        </div>
+      </ng-container>
+    </div>
+    <div class="flag-container">
+      <img src="https://flagcdn.com/{{flagSelected.country_code}}.svg"
+           alt="Flag of {{flagSelected.name}}">
+    </div>
+    <form class="input-container" (submit)="guessFlag($event)">
+      <mat-form-field class="country-input">
+        <mat-label>Country name</mat-label>
+        <input type="text" matInput placeholder="Guess the country's name" [formControl]="guessCountryControl">
+      </mat-form-field>
+
+      <button mat-raised-button class="guess-button" color="primary" (click)="guessFlag($event)" type="button"
+              [disabled]="attempts===0">
+        Guess
+      </button>
+      <button mat-raised-button color="accent" type="button" class="hint-button" *ngIf="hintAmount > 0"
+              (click)="generateHint()" [disabled]="hintGivenThisRound || attempts === 0">
+        Hint {{hintAmount}}/3
+      </button>
+      <div class="hint_text-container">
+        {{hintText}}
+      </div>
+      <div *ngIf="countries.length < 10 && countries.length > 0">
+        You only have {{countries.length}} left to guess!
+      </div>
+    </form>
+  </ng-container>
+  <ng-template #gameEnded>
+    <div class="winner_text-container">Congratulations you have completed the game!</div>
+    <div class="winner_text-container">({{totalAmountOfFlags}} Correct / {{3 - attempts}} Errors
+    / {{3 - hintAmount}} Hints used)</div>
+    <div class="reset_button-container">
+      <button mat-raised-button color="accent" (click)="initializeGame()">Play Again</button>
+    </div>
+  </ng-template>
+</div>

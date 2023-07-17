@@ -1,0 +1,169 @@
+{
+  "countries": [
+    {
+      "name": "Italy",
+      "weight": 1,
+      "country_code": "it"
+    },
+    {
+      "name": "France",
+      "weight": 1,
+      "country_code": "fr"
+    },
+    {
+      "name": "United States",
+      "weight": 1,
+      "country_code": "us"
+    },
+    {
+      "name": "Japan",
+      "weight": 1,
+      "country_code": "jp"
+    },
+    {
+      "name": "Spain",
+      "weight": 1,
+      "country_code": "es"
+    },
+    {
+      "name": "United Kingdom",
+      "weight": 1,
+      "country_code": "gb"
+    },
+    {
+      "name": "South Korea",
+      "weight": 1,
+      "country_code": "kr"
+    },
+    {
+      "name": "Switzerland",
+      "weight": 1,
+      "country_code": "ch"
+    },
+    {
+      "name": "Germany",
+      "weight": 1,
+      "country_code": "de"
+    },
+    {
+      "name": "Australia",
+      "weight": 1,
+      "country_code": "au"
+    },
+    {
+      "name": "China",
+      "weight": 1,
+      "country_code": "cn"
+    },
+    {
+      "name": "Greece",
+      "weight": 1,
+      "country_code": "gr"
+    },
+    {
+      "name": "Sweden",
+      "weight": 1,
+      "country_code": "se"
+    },
+    {
+      "name": "Canada",
+      "weight": 1,
+      "country_code": "ca"
+    },
+    {
+      "name": "Brazil",
+      "weight": 1,
+      "country_code": "br"
+    },
+    {
+      "name": "Netherlands",
+      "weight": 1,
+      "country_code": "nl"
+    },
+    {
+      "name": "Mexico",
+      "weight": 1,
+      "country_code": "mx"
+    },
+    {
+      "name": "New Zealand",
+      "weight": 1,
+      "country_code": "nz"
+    },
+    {
+      "name": "Denmark",
+      "weight": 1,
+      "country_code": "dk"
+    },
+    {
+      "name": "Norway",
+      "weight": 1,
+      "country_code": "no"
+    },
+    {
+      "name": "Belgium",
+      "weight": 1,
+      "country_code": "be"
+    },
+    {
+      "name": "Portugal",
+      "weight": 1,
+      "country_code": "pt"
+    },
+    {
+      "name": "Turkey",
+      "weight": 1,
+      "country_code": "tr"
+    },
+    {
+      "name": "Finland",
+      "weight": 1,
+      "country_code": "fi"
+    },
+    {
+      "name": "Ireland",
+      "weight": 1,
+      "country_code": "ie"
+    },
+    {
+      "name": "Argentina",
+      "weight": 1,
+      "country_code": "ar"
+    },
+    {
+      "name": "India",
+      "weight": 1,
+      "country_code": "in"
+    },
+    {
+      "name": "Russia",
+      "weight": 1,
+      "country_code": "ru"
+    },
+    {
+      "name": "South Africa",
+      "weight": 1,
+      "country_code": "za"
+    },
+    {
+      "name": "Israel",
+      "weight": 1,
+      "country_code": "il"
+    },
+    {
+      "name": "Colombia",
+      "weight": 1,
+      "country_code": "co"
+    },
+    {
+      "name": "Poland",
+      "weight": 1,
+      "country_code": "pl"
+    },
+    {
+      "name": "Ukraine",
+      "weight": 1,
+      "country_code": "ua"
+    }
+  ]
+}
