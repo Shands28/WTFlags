@@ -8,18 +8,19 @@
 }
 
 .flag-container {
-  max-width: 50vw;
-  min-width: 300px;
-  aspect-ratio: auto;
+  width: clamp(300px, 50%, 600px);
+  max-height: 500px;
   display: flex;
   justify-content: center;
-}
 
-.flag-container img {
-  border: 0;
-  border-radius: 15px;
-  box-shadow: 0 0 10px lightslategray;
-  width: 100%;
+  img {
+    border: 0;
+    border-radius: 15px;
+    width: 100%;
+    box-shadow: 3px 0 #f44336, -3px 0 #00e5e5, 0 3px #e0ac08, 0 -3px #2dd36f,
+    2px 2px #f44336, -2px -2px #00e5e5, 2px -2px #e0ac08, -2px 2px #2dd36f;
+    background: #fff;
+  }
 }
 
 .input-container {
@@ -66,4 +67,10 @@
 .winner_text-container {
   margin-bottom: 5px;
   text-align: center;
+}
+
+.difficulty-button {
+  position: absolute;
+  bottom: 1vh;
+  right: 1vh;
 }

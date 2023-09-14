@@ -1,0 +1,327 @@
+[
+  {
+    "name": "Afghanistan",
+    "country_code": "af",
+    "weight": 2
+  },
+  {
+    "name": "Armenia",
+    "country_code": "am",
+    "weight": 2
+  },
+  {
+    "name": "Angola",
+    "country_code": "ao",
+    "weight": 2
+  },
+  {
+    "name": "Austria",
+    "country_code": "at",
+    "weight": 2
+  },
+  {
+    "name": "Azerbaijan",
+    "country_code": "az",
+    "weight": 2
+  },
+  {
+    "name": "Bulgaria",
+    "country_code": "bg",
+    "weight": 2
+  },
+  {
+    "name": "Bahrain",
+    "country_code": "bh",
+    "weight": 2
+  },
+  {
+    "name": "Bolivia",
+    "country_code": "bo",
+    "weight": 2
+  },
+  {
+    "name": "Bahamas",
+    "country_code": "bs",
+    "weight": 2
+  },
+  {
+    "name": "Botswana",
+    "country_code": "bw",
+    "weight": 2
+  },
+  {
+    "name": "Belarus",
+    "country_code": "by",
+    "weight": 2
+  },
+  {
+    "name": "Republic of the Congo",
+    "country_code": "cg",
+    "weight": 2
+  },
+  {
+    "name": "Chile",
+    "country_code": "cl",
+    "weight": 2
+  },
+  {
+    "name": "Cameroon",
+    "country_code": "cm",
+    "weight": 2
+  },
+  {
+    "name": "Costa Rica",
+    "country_code": "cr",
+    "weight": 2
+  },
+  {
+    "name": "Cuba",
+    "country_code": "cu",
+    "weight": 2
+  },
+  {
+    "name": "Dominica",
+    "country_code": "dm",
+    "weight": 2
+  },
+  {
+    "name": "Dominican Republic",
+    "country_code": "do",
+    "weight": 2
+  },
+  {
+    "name": "Ecuador",
+    "country_code": "ec",
+    "weight": 2
+  },
+  {
+    "name": "Estonia",
+    "country_code": "ee",
+    "weight": 2
+  },
+  {
+    "name": "Egypt",
+    "country_code": "eg",
+    "weight": 2
+  },
+  {
+    "name": "Ethiopia",
+    "country_code": "et",
+    "weight": 2
+  },
+  {
+    "name": "Georgia",
+    "country_code": "ge",
+    "weight": 2
+  },
+  {
+    "name": "Ghana",
+    "country_code": "gh",
+    "weight": 2
+  },
+  {
+    "name": "Greenland",
+    "country_code": "gl",
+    "weight": 2
+  },
+  {
+    "name": "Equatorial Guinea",
+    "country_code": "gq",
+    "weight": 2
+  },
+  {
+    "name": "Guatemala",
+    "country_code": "gt",
+    "weight": 2
+  },
+  {
+    "name": "Hong Kong",
+    "country_code": "hk",
+    "weight": 2
+  },
+  {
+    "name": "Honduras",
+    "country_code": "hn",
+    "weight": 2
+  },
+  {
+    "name": "Croatia",
+    "country_code": "hr",
+    "weight": 2
+  },
+  {
+    "name": "Hungary",
+    "country_code": "hu",
+    "weight": 2
+  },
+  {
+    "name": "Indonesia",
+    "country_code": "id",
+    "weight": 2
+  },
+  {
+    "name": "Iraq",
+    "country_code": "iq",
+    "weight": 2
+  },
+  {
+    "name": "Iceland",
+    "country_code": "is",
+    "weight": 2
+  },
+  {
+    "name": "Kenya",
+    "country_code": "ke",
+    "weight": 2
+  },
+  {
+    "name": "North Korea",
+    "country_code": "kp",
+    "weight": 2
+  },
+  {
+    "name": "Lithuania",
+    "country_code": "lt",
+    "weight": 2
+  },
+  {
+    "name": "Luxembourg",
+    "country_code": "lu",
+    "weight": 2
+  },
+  {
+    "name": "Latvia",
+    "country_code": "lv",
+    "weight": 2
+  },
+  {
+    "name": "Monaco",
+    "country_code": "mc",
+    "weight": 2
+  },
+  {
+    "name": "Moldova",
+    "country_code": "md",
+    "weight": 2
+  },
+  {
+    "name": "Madagascar",
+    "country_code": "mg",
+    "weight": 2
+  },
+  {
+    "name": "Mongolia",
+    "country_code": "mn",
+    "weight": 2
+  },
+  {
+    "name": "Malaysia",
+    "country_code": "my",
+    "weight": 2
+  },
+  {
+    "name": "Mozambique",
+    "country_code": "mz",
+    "weight": 2
+  },
+  {
+    "name": "Niger",
+    "country_code": "ne",
+    "weight": 2
+  },
+  {
+    "name": "Nigeria",
+    "country_code": "ng",
+    "weight": 2
+  },
+  {
+    "name": "Nicaragua",
+    "country_code": "ni",
+    "weight": 2
+  },
+  {
+    "name": "Peru",
+    "country_code": "pe",
+    "weight": 2
+  },
+  {
+    "name": "Puerto Rico",
+    "country_code": "pr",
+    "weight": 2
+  },
+  {
+    "name": "Palestine",
+    "country_code": "ps",
+    "weight": 2
+  },
+  {
+    "name": "Paraguay",
+    "country_code": "py",
+    "weight": 2
+  },
+  {
+    "name": "Qatar",
+    "country_code": "qa",
+    "weight": 2
+  },
+  {
+    "name": "Romania",
+    "country_code": "ro",
+    "weight": 2
+  },
+  {
+    "name": "Saudi Arabia",
+    "country_code": "sa",
+    "weight": 2
+  },
+  {
+    "name": "Singapore",
+    "country_code": "sg",
+    "weight": 2
+  },
+  {
+    "name": "Somalia",
+    "country_code": "so",
+    "weight": 2
+  },
+  {
+    "name": "Syria",
+    "country_code": "sy",
+    "weight": 2
+  },
+  {
+    "name": "Thailand",
+    "country_code": "th",
+    "weight": 2
+  },
+  {
+    "name": "Taiwan",
+    "country_code": "tw",
+    "weight": 2
+  },
+  {
+    "name": "Uruguay",
+    "country_code": "uy",
+    "weight": 2
+  },
+  {
+    "name": "Vatican",
+    "country_code": "va",
+    "weight": 2
+  },
+  {
+    "name": "Venezuela",
+    "country_code": "ve",
+    "weight": 2
+  },
+  {
+    "name": "Vietnam",
+    "country_code": "vn",
+    "weight": 2
+  },
+  {
+    "name": "Malta",
+    "country_code": "mt",
+    "weight": 2
+  }
+]

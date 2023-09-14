@@ -2,19 +2,19 @@
   <ng-container *ngIf="countries.length > 0; else gameEnded">
     <div class="lives_counter-container">
       <ng-container *ngIf="attempts >= 1">
-        <img src="assets/icon/heart_full.png" alt="">
+        <img ngSrc="assets/icon/heart_full.png" alt="" height="15" width="16">
       </ng-container>
       <ng-container *ngIf="attempts >= 2">
-        <img src="assets/icon/heart_full.png" alt="">
+        <img ngSrc="assets/icon/heart_full.png" alt="" height="15" width="16">
       </ng-container>
       <ng-container *ngIf="attempts >= 3">
-        <img src="assets/icon/heart_full.png" alt="">
+        <img ngSrc="assets/icon/heart_full.png" alt="" height="15" width="16">
       </ng-container>
       <ng-container *ngIf="attempts < 2 && attempts > 0">
-        <img src="assets/icon/heart_empty.png" alt="">
+        <img ngSrc="assets/icon/heart_empty.png" alt="" height="15" width="16">
       </ng-container>
       <ng-container *ngIf="attempts < 3 && attempts > 0">
-        <img src="assets/icon/heart_empty.png" alt="">
+        <img ngSrc="assets/icon/heart_empty.png" alt="" height="15" width="16">
       </ng-container>
       <ng-container *ngIf="attempts === 0">
         <div class="loser_text-container">
@@ -36,7 +36,13 @@
     <form class="input-container" (submit)="guessFlag($event)">
       <mat-form-field class="country-input">
         <mat-label>Country name</mat-label>
-        <input type="text" matInput placeholder="Guess the country's name" [formControl]="guessCountryControl">
+        <input type="text" matInput placeholder="Guess the country's name" [formControl]="guessCountryControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
 
       <button mat-raised-button class="guess-button" color="primary" (click)="guessFlag($event)" type="button"
@@ -58,9 +64,11 @@
   <ng-template #gameEnded>
     <div class="winner_text-container">Congratulations you have completed the game!</div>
     <div class="winner_text-container">({{totalAmountOfFlags}} Correct / {{3 - attempts}} Errors
-    / {{3 - hintAmount}} Hints used)</div>
+      / {{3 - hintAmount}} Hints used)
+    </div>
     <div class="reset_button-container">
       <button mat-raised-button color="accent" (click)="initializeGame()">Play Again</button>
     </div>
   </ng-template>
+  <button mat-flat-button color="primary" class="difficulty-button" routerLink="..">Change difficulty</button>
 </div>

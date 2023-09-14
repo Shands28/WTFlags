@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Antigua and Barbuda",
+    "country_code": "ag",
+    "weight": 4
+  },
+  {
+    "name": "Antarctica",
+    "country_code": "aq",
+    "weight": 4
+  },
+  {
+    "name": "Burkina Faso",
+    "country_code": "bf",
+    "weight": 4
+  },
+  {
+    "name": "Saint Barthélemy",
+    "country_code": "bl",
+    "weight": 4
+  },
+  {
+    "name": "Curaçao",
+    "country_code": "cw",
+    "weight": 4
+  },
+  {
+    "name": "Christmas Island",
+    "country_code": "cx",
+    "weight": 4
+  },
+  {
+    "name": "Djibouti",
+    "country_code": "dj",
+    "weight": 4
+  },
+  {
+    "name": "Eritrea",
+    "country_code": "er",
+    "weight": 4
+  },
+  {
+    "name": "Gabon",
+    "country_code": "ga",
+    "weight": 4
+  },
+  {
+    "name": "French Guiana",
+    "country_code": "gf",
+    "weight": 4
+  },
+  {
+    "name": "Guernsey",
+    "country_code": "gg",
+    "weight": 4
+  },
+  {
+    "name": "Guinea",
+    "country_code": "gn",
+    "weight": 4
+  },
+  {
+    "name": "Guinea-Bissau",
+    "country_code": "gw",
+    "weight": 4
+  },
+  {
+    "name": "Guyana",
+    "country_code": "gy",
+    "weight": 4
+  },
+  {
+    "name": "Kyrgyzstan",
+    "country_code": "kg",
+    "weight": 4
+  },
+  {
+    "name": "Kiribati",
+    "country_code": "ki",
+    "weight": 4
+  },
+  {
+    "name": "Comoros",
+    "country_code": "km",
+    "weight": 4
+  },
+  {
+    "name": "Saint Kitts and Nevis",
+    "country_code": "kn",
+    "weight": 4
+  },
+  {
+    "name": "Lesotho",
+    "country_code": "ls",
+    "weight": 4
+  },
+  {
+    "name": "Martinique",
+    "country_code": "mq",
+    "weight": 4
+  },
+  {
+    "name": "Mauritius",
+    "country_code": "mu",
+    "weight": 4
+  },
+  {
+    "name": "Malawi",
+    "country_code": "mw",
+    "weight": 4
+  },
+  {
+    "name": "Nauru",
+    "country_code": "nr",
+    "weight": 4
+  },
+  {
+    "name": "Niue",
+    "country_code": "nu",
+    "weight": 4
+  },
+  {
+    "name": "French Polynesia",
+    "country_code": "pf",
+    "weight": 4
+  },
+  {
+    "name": "Réunion",
+    "country_code": "re",
+    "weight": 4
+  },
+  {
+    "name": "São Tomé and Príncipe",
+    "country_code": "st",
+    "weight": 4
+  },
+  {
+    "name": "Chad",
+    "country_code": "td",
+    "weight": 4
+  },
+  {
+    "name": "Togo",
+    "country_code": "tg",
+    "weight": 4
+  },
+  {
+    "name": "Tajikistan",
+    "country_code": "tj",
+    "weight": 4
+  },
+  {
+    "name": "Tokelau",
+    "country_code": "tk",
+    "weight": 4
+  },
+  {
+    "name": "Timor-Leste",
+    "country_code": "tl",
+    "weight": 4
+  },
+  {
+    "name": "Turkmenistan",
+    "country_code": "tm",
+    "weight": 4
+  },
+  {
+    "name": "Mayotte",
+    "country_code": "yt",
+    "weight": 4
+  }
+]

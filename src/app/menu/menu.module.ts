@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
-import {GameComponent} from './game.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
-import {GameRoutingModule} from "./game-routing.module";
+import {MenuRoutingModule} from "./menu-routing.module";
+import {MenuComponent} from "./menu.component";
+import {MatSelectModule} from "@angular/material/select";
+import {MatFormFieldModule} from "@angular/material/form-field";
 import {RouterLink} from "@angular/router";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   imports: [
@@ -21,17 +22,17 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatInputModule,
     MatButtonModule,
     HttpClientModule,
-    GameRoutingModule,
-    RouterLink,
-    MatAutocompleteModule,
-    NgOptimizedImage
+    MenuRoutingModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    RouterLink
   ],
   declarations: [
-    GameComponent
+    MenuComponent
   ],
   exports: [
-    GameComponent
+    MenuComponent
   ]
 })
-export class GameComponentModule {
+export class MenuComponentModule {
 }

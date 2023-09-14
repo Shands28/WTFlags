@@ -1,13 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {GameDifficultyService} from "../services/game-difficulty.service";
+import {ActivatedRoute} from "@angular/router";
+import {map, Observable, startWith} from "rxjs";
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent {
+export class GameComponent implements OnInit {
 
   countries: { name: string; weight: number, cumulativeWeight?: number, country_code: string }[] = []
   maxCumulativeWeight: number = 0;
@@ -22,16 +24,27 @@ export class GameComponent {
   hintText: string = "";
   hintGivenThisRound: boolean = false;
   totalAmountOfFlags: number = 0;
+  filteredOptions: Observable<string[]> = new Observable<string[]>();
 
   constructor(
     private gameDifficultyService: GameDifficultyService,
+    private route: ActivatedRoute
   ) {
-    this.initializeGame();
+    this.route.params.subscribe(val => {
+      this.initializeGame();
+    })
+  }
+
+  ngOnInit() {
+    this.filteredOptions = this.guessCountryControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
   }
 
   initializeGame() {
-    this.gameDifficultyService.getEasyCountriesList().subscribe((res: any) => {
-      this.countries = res['countries'];
+    this.gameDifficultyService.getCountriesListByDifficulty(localStorage.getItem('difficulty') || '0').subscribe((res: any) => {
+      this.countries = res;
       this.totalAmountOfFlags = this.countries.length;
       console.log(this.countries)
       this.generateWeights()
@@ -90,7 +103,7 @@ export class GameComponent {
       this.guessCountryControl.reset();
       this.guessCountryControl.setErrors({'incorrect': true});
       this.attempts--
-      if(this.attempts === 0){
+      if (this.attempts === 0) {
         this.guessCountryControl.disable();
       }
     } else {
@@ -127,5 +140,15 @@ export class GameComponent {
     })
     console.log(hintedTextAux, hintedLettersAmount)
     this.hintText = hintedTextAux.trim();
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    if(filterValue.length >= 2) {
+      return this.countries.map(country => country.name).filter(option => option.toLowerCase().includes(filterValue))
+    }
+    else {
+      return []
+    }
   }
 }
