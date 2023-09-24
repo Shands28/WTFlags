@@ -30,7 +30,7 @@ export class GameComponent implements OnInit {
     private gameDifficultyService: GameDifficultyService,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe(val => {
+    this.route.params.subscribe(() => {
       this.initializeGame();
     })
   }
@@ -121,14 +121,23 @@ export class GameComponent implements OnInit {
   generateHint() {
     this.hintGivenThisRound = true;
     this.hintAmount--;
+    let hintChance = 3;
+    let hintChanceTotal = 0.5;
     let hintedLettersAmount = this.flagSelected.name.length >= 9 ? 4 : 2;
     let hintedTextAux = "";
     this.flagSelected.name.split('').forEach((letter) => {
       if (hintedLettersAmount > 0 && letter !== " ") {
-        console.log(hintedTextAux)
-        if (Math.random() < 0.5) {
-          hintedTextAux = hintedTextAux.concat("-");
+        let chance = Math.random()*10;
+        if (chance > hintChanceTotal) {
+          if(hintedLettersAmount === this.flagSelected.name.length - hintedTextAux.length) {
+            hintedTextAux = hintedTextAux.concat(letter);
+            hintedLettersAmount--;
+          } else {
+            hintedTextAux = hintedTextAux.concat("-");
+            hintChanceTotal += hintChance;
+          }
         } else {
+          hintChanceTotal = hintChance;
           hintedTextAux = hintedTextAux.concat(letter);
           hintedLettersAmount--;
         }
@@ -138,8 +147,8 @@ export class GameComponent implements OnInit {
         hintedTextAux = hintedTextAux.concat("-");
       }
     })
-    console.log(hintedTextAux, hintedLettersAmount)
     this.hintText = hintedTextAux.trim();
+
   }
 
   private _filter(value: string): string[] {
