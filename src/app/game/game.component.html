@@ -1,21 +1,11 @@
 <div class="container">
   <ng-container *ngIf="countries.length > 0; else gameEnded">
     <div class="lives_counter-container">
-      <ng-container *ngIf="attempts >= 1">
-        <img ngSrc="assets/icon/heart_full.png" alt="" height="15" width="16">
-      </ng-container>
-      <ng-container *ngIf="attempts >= 2">
-        <img ngSrc="assets/icon/heart_full.png" alt="" height="15" width="16">
-      </ng-container>
-      <ng-container *ngIf="attempts >= 3">
-        <img ngSrc="assets/icon/heart_full.png" alt="" height="15" width="16">
-      </ng-container>
-      <ng-container *ngIf="attempts < 2 && attempts > 0">
-        <img ngSrc="assets/icon/heart_empty.png" alt="" height="15" width="16">
-      </ng-container>
-      <ng-container *ngIf="attempts < 3 && attempts > 0">
-        <img ngSrc="assets/icon/heart_empty.png" alt="" height="15" width="16">
-      </ng-container>
+      <ng-container *ngIf="attempts >= 1">🤎</ng-container>
+      <ng-container *ngIf="attempts >= 2">💙</ng-container>
+      <ng-container *ngIf="attempts >= 3">💚</ng-container>
+      <ng-container *ngIf="attempts < 2 && attempts > 0">❌</ng-container>
+      <ng-container *ngIf="attempts < 3 && attempts > 0">❌</ng-container>
       <ng-container *ngIf="attempts === 0">
         <div class="loser_text-container">
           You have no lives left
@@ -70,5 +60,7 @@
       <button mat-raised-button color="accent" (click)="initializeGame()">Play Again</button>
     </div>
   </ng-template>
-  <button mat-flat-button color="primary" class="difficulty-button" routerLink="..">Change difficulty</button>
+  <button mat-flat-button color="primary" class="difficulty-button" routerLink=".." *ngIf="!keyboardOut">Change
+    difficulty
+  </button>
 </div>

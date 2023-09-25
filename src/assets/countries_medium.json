@@ -323,5 +323,10 @@
     "name": "Malta",
     "country_code": "mt",
     "weight": 2
+  },
+  {
+    "name": "Iran",
+    "country_code": "ir",
+    "weight": 2
   }
 ]

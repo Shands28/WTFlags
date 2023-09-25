@@ -3,6 +3,7 @@ import {FormControl} from "@angular/forms";
 import {GameDifficultyService} from "../services/game-difficulty.service";
 import {ActivatedRoute} from "@angular/router";
 import {map, Observable, startWith} from "rxjs";
+import {Platform} from "@ionic/angular";
 
 @Component({
   selector: 'app-game',
@@ -26,13 +27,22 @@ export class GameComponent implements OnInit {
   totalAmountOfFlags: number = 0;
   filteredOptions: Observable<string[]> = new Observable<string[]>();
 
+  keyboardOut: boolean = false
+
   constructor(
     private gameDifficultyService: GameDifficultyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private platform: Platform
   ) {
     this.route.params.subscribe(() => {
       this.initializeGame();
     })
+    this.platform.keyboardDidShow.subscribe(() => {
+      this.keyboardOut = true
+    });
+    this.platform.keyboardDidHide.subscribe(() => {
+      this.keyboardOut = false
+    });
   }
 
   ngOnInit() {
@@ -127,9 +137,9 @@ export class GameComponent implements OnInit {
     let hintedTextAux = "";
     this.flagSelected.name.split('').forEach((letter) => {
       if (hintedLettersAmount > 0 && letter !== " ") {
-        let chance = Math.random()*10;
+        let chance = Math.random() * 10;
         if (chance > hintChanceTotal) {
-          if(hintedLettersAmount === this.flagSelected.name.length - hintedTextAux.length) {
+          if (hintedLettersAmount === this.flagSelected.name.length - hintedTextAux.length) {
             hintedTextAux = hintedTextAux.concat(letter);
             hintedLettersAmount--;
           } else {
@@ -153,10 +163,9 @@ export class GameComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    if(filterValue.length >= 2) {
+    if (filterValue.length >= 2) {
       return this.countries.map(country => country.name).filter(option => option.toLowerCase().includes(filterValue))
-    }
-    else {
+    } else {
       return []
     }
   }
