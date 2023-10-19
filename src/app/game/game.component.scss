@@ -64,9 +64,26 @@
   margin-bottom: 5px;
 }
 
-.winner_text-container {
+.winner_text-container, .winner_subtext-container {
   margin-bottom: 5px;
   text-align: center;
+  text-shadow: 2px 0 #f44336, -2px 0 #00e5e5, 0 2px #e0ac08, 0 -2px #2dd36f,
+  2px 2px #f44336, -2px -2px #00e5e5, 2px -2px #e0ac08, -2px 2px #2dd36f;
+  color: black;
+  font-weight: bold;
+}
+
+.winner_text-container {
+  font-size: 32px;
+  text-decoration: underline wavy;
+}
+
+.winner_subtext-container {
+  font-size: 24px;
+}
+
+.winner_subtext-container:first-letter {
+  text-decoration: underline;
 }
 
 .difficulty-button {

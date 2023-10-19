@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngStyle]="countries.length === 0 ? {height: '100vh'} : []">
   <ng-container *ngIf="countries.length > 0; else gameEnded">
     <div class="lives_counter-container">
       <ng-container *ngIf="attempts >= 1">🤎</ng-container>
@@ -52,10 +52,10 @@
     </form>
   </ng-container>
   <ng-template #gameEnded>
-    <div class="winner_text-container">Congratulations you have completed the game!</div>
-    <div class="winner_text-container">({{totalAmountOfFlags}} Correct / {{3 - attempts}} Errors
-      / {{3 - hintAmount}} Hints used)
-    </div>
+    <div class="winner_text-container">Congratulations!</div>
+    <div class="winner_subtext-container">{{totalAmountOfFlags}} Correct</div>
+    <div class="winner_subtext-container">{{3 - attempts}} Errors</div>
+    <div class="winner_subtext-container">{{3 - hintAmount}} Hints used</div>
     <div class="reset_button-container">
       <button mat-raised-button color="accent" (click)="initializeGame()">Play Again</button>
     </div>

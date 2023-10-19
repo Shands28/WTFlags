@@ -26,7 +26,6 @@ export class GameComponent implements OnInit {
   hintGivenThisRound: boolean = false;
   totalAmountOfFlags: number = 0;
   filteredOptions: Observable<string[]> = new Observable<string[]>();
-
   keyboardOut: boolean = false
 
   constructor(
@@ -115,6 +114,7 @@ export class GameComponent implements OnInit {
       this.attempts--
       if (this.attempts === 0) {
         this.guessCountryControl.disable();
+        this.hintText = this.flagSelected.name
       }
     } else {
       this.guessCountryControl.reset();
