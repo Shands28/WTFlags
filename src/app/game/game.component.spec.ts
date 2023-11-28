@@ -9,9 +9,8 @@ describe('ExploreContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GameComponent],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), GameComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(GameComponent);
     component = fixture.componentInstance;

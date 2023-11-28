@@ -1,14 +1,36 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {GameDifficultyService} from "../services/game-difficulty.service";
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import {map, Observable, startWith} from "rxjs";
-import {Platform} from "@ionic/angular";
+import { Platform, IonicModule } from "@ionic/angular";
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { NgStyle, NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss'],
+    selector: 'app-game',
+    templateUrl: './game.component.html',
+    styleUrls: ['./game.component.scss'],
+    standalone: true,
+    imports: [
+        NgStyle,
+        NgIf,
+        MatButtonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        NgFor,
+        MatOptionModule,
+        IonicModule,
+        RouterLink,
+        AsyncPipe,
+    ],
 })
 export class GameComponent implements OnInit {
 

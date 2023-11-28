@@ -13,25 +13,23 @@ import {RouterLink} from "@angular/router";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
-    GameRoutingModule,
-    RouterLink,
-    MatAutocompleteModule,
-    NgOptimizedImage
-  ],
-  declarations: [
-    GameComponent
-  ],
-  exports: [
-    GameComponent
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        HttpClientModule,
+        GameRoutingModule,
+        RouterLink,
+        MatAutocompleteModule,
+        NgOptimizedImage,
+        GameComponent
+    ],
+    exports: [
+        GameComponent
+    ]
 })
 export class GameComponentModule {
 }
