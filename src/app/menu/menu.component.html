@@ -1,0 +1,45 @@
+<div class="difficulty-container">
+  <div>WTFlags</div>
+  <mat-form-field class="select-container">
+    <mat-label>{{'difficulty' | translate}}</mat-label>
+    <mat-select (selectionChange)="changeDifficulty($event)" [value]="difficulty"
+                aria-label="{{'choose_difficulty' | translate}}">
+      <mat-option [value]="'0'">
+        {{'easy' | translate}}
+      </mat-option>
+      <mat-option [value]="'1'">
+        {{'medium' | translate}}
+      </mat-option>
+      <mat-option [value]="'2'">
+        {{'hard' | translate}}
+      </mat-option>
+      <mat-option [value]="'3'">
+        {{'very_hard' | translate}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" [routerLink]="['game']">{{'start' | translate}}</button>
+  <footer class="container-flags">
+    <button (click)="changeLang('en')">
+      <img
+        src="https://flagcdn.com/24x18/gb.png"
+        width="24"
+        height="18"
+        alt="English">
+    </button>
+    <button (click)="changeLang('es')">
+      <img
+        src="https://flagcdn.com/24x18/es.png"
+        width="24"
+        height="18"
+        alt="Spanish">
+    </button>
+    <button (click)="changeLang('kr')">
+      <img
+        src="https://flagcdn.com/24x18/kr.png"
+        width="24"
+        height="18"
+        alt="Korean">
+    </button>
+  </footer>
+</div>

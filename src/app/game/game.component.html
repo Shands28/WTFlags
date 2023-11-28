@@ -8,25 +8,30 @@
       <ng-container *ngIf="attempts < 3 && attempts > 0">❌</ng-container>
       <ng-container *ngIf="attempts === 0">
         <div class="loser_text-container">
-          You have no lives left
+          {{'no_lives' | translate}}
         </div>
         <div class="loser_text-container">
-          ({{totalAmountOfFlags - countries.length}} Correct / {{3 - attempts}} Errors
-          / {{3 - hintAmount}} Hints used)
+          <!--          ({{totalAmountOfFlags - countries.length}} Correct / {{3 - attempts}} Errors-->
+          <!--          / {{3 - hintAmount}} Hints used)-->
+          {{'endgame_score' | translate : ({
+            correct: totalAmountOfFlags - countries.length,
+            errors: 3 - attempts,
+            hints: 3 - hintAmount
+          })}}
         </div>
         <div>
-          <button mat-raised-button color="accent" (click)="initializeGame()">Reset Game</button>
+          <button mat-raised-button color="accent" (click)="initializeGame()">{{'reset' | translate}}</button>
         </div>
       </ng-container>
     </div>
     <div class="flag-container">
       <img src="https://flagcdn.com/{{flagSelected.country_code}}.svg"
-           alt="Flag of {{flagSelected.name}}">
+           alt="{{'flag_of' | translate}} {{flagSelected.name}}">
     </div>
     <form class="input-container" (submit)="guessFlag($event)">
       <mat-form-field class="country-input">
-        <mat-label>Country name</mat-label>
-        <input type="text" matInput placeholder="Guess the country's name" [formControl]="guessCountryControl"
+        <mat-label>{{'country_name' | translate}}</mat-label>
+        <input type="text" matInput placeholder="{{'ph_guess' | translate}}" [formControl]="guessCountryControl"
                [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -37,30 +42,30 @@
 
       <button mat-raised-button class="guess-button" color="primary" (click)="guessFlag($event)" type="button"
               [disabled]="attempts===0">
-        Guess
+        {{'bt_guess' | translate}}
       </button>
       <button mat-raised-button color="accent" type="button" class="hint-button" *ngIf="hintAmount > 0"
               (click)="generateHint()" [disabled]="hintGivenThisRound || attempts === 0">
-        Hint {{hintAmount}}/3
+        {{'bt_hint' | translate}} {{hintAmount}}/3
       </button>
       <div class="hint_text-container">
         {{hintText}}
       </div>
       <div *ngIf="countries.length < 10 && countries.length > 0">
-        You only have {{countries.length}} left to guess!
+        {{'cheer_country_left' | translate: ({countriesLeft: countries.length})}}
       </div>
     </form>
   </ng-container>
   <ng-template #gameEnded>
-    <div class="winner_text-container">Congratulations!</div>
-    <div class="winner_subtext-container">{{totalAmountOfFlags}} Correct</div>
-    <div class="winner_subtext-container">{{3 - attempts}} Errors</div>
-    <div class="winner_subtext-container">{{3 - hintAmount}} Hints used</div>
+    <div class="winner_text-container">{{'cheer_gz' | translate}}</div>
+    <div class="winner_subtext-container">{{totalAmountOfFlags}} {{'correct' | translate}}</div>
+    <div class="winner_subtext-container">{{3 - attempts}} {{'errors' | translate}}</div>
+    <div class="winner_subtext-container">{{3 - hintAmount}} {{'hints_used' | translate}}</div>
     <div class="reset_button-container">
-      <button mat-raised-button color="accent" (click)="initializeGame()">Play Again</button>
+      <button mat-raised-button color="accent" (click)="initializeGame()">{{'bt_play_again' | translate}}</button>
     </div>
   </ng-template>
-  <button mat-flat-button color="primary" class="difficulty-button" routerLink=".." *ngIf="!keyboardOut">Change
-    difficulty
+  <button mat-flat-button color="primary" class="difficulty-button" routerLink=".." *ngIf="!keyboardOut">
+    {{'bt_change_diff' | translate}}
   </button>
 </div>

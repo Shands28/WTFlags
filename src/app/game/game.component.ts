@@ -10,27 +10,29 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { NgStyle, NgIf, NgFor, AsyncPipe } from '@angular/common';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.scss'],
     standalone: true,
-    imports: [
-        NgStyle,
-        NgIf,
-        MatButtonModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        NgFor,
-        MatOptionModule,
-        IonicModule,
-        RouterLink,
-        AsyncPipe,
-    ],
+  imports: [
+    NgStyle,
+    NgIf,
+    MatButtonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    NgFor,
+    MatOptionModule,
+    IonicModule,
+    RouterLink,
+    AsyncPipe,
+    TranslateModule,
+  ],
 })
 export class GameComponent implements OnInit {
 

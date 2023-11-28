@@ -1,0 +1,31 @@
+.difficulty-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15vh;
+
+  button, .select-container {
+    width: clamp(300px, 50%, 600px);
+  }
+
+  div {
+    font-size: 5em;
+    margin-bottom: 30px;
+    user-select: none;
+    text-shadow: 3px 0 #f44336, -3px 0 #00e5e5, 0 3px #e0ac08, 0 -3px #2dd36f,
+    2px 2px #f44336, -2px -2px #00e5e5, 2px -2px #e0ac08, -2px 2px #2dd36f;
+  }
+
+  .container-flags {
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    gap: .25em;
+
+    button {
+      width: unset;
+      background: none;
+    }
+  }
+}
