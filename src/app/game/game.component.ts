@@ -1,22 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {Component, inject, OnInit} from '@angular/core';
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {GameDifficultyService} from "../services/game-difficulty.service";
-import { ActivatedRoute, RouterLink } from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {map, Observable, startWith} from "rxjs";
-import { Platform, IonicModule } from "@ionic/angular";
-import { MatOptionModule } from '@angular/material/core';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { NgStyle, NgIf, NgFor, AsyncPipe } from '@angular/common';
-import {TranslateModule} from "@ngx-translate/core";
+import {Platform, IonicModule} from "@ionic/angular";
+import {MatOptionModule} from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {NgStyle, NgIf, NgFor, AsyncPipe} from '@angular/common';
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @Component({
-    selector: 'app-game',
-    templateUrl: './game.component.html',
-    styleUrls: ['./game.component.scss'],
-    standalone: true,
+  selector: 'app-game',
+  templateUrl: './game.component.html',
+  styleUrls: ['./game.component.scss'],
+  standalone: true,
   imports: [
     NgStyle,
     NgIf,
@@ -26,6 +27,7 @@ import {TranslateModule} from "@ngx-translate/core";
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     NgFor,
     MatOptionModule,
     IonicModule,
@@ -36,9 +38,13 @@ import {TranslateModule} from "@ngx-translate/core";
 })
 export class GameComponent implements OnInit {
 
+  translateService: TranslateService = inject(TranslateService);
+  gameDifficultyService: GameDifficultyService = inject(GameDifficultyService);
+  route: ActivatedRoute = inject(ActivatedRoute);
+  platform: Platform = inject(Platform);
   countries: { name: string; weight: number, cumulativeWeight?: number, country_code: string }[] = []
   maxCumulativeWeight: number = 0;
-  guessCountryControl = new FormControl({value: '', disabled: false});
+  guessCountryControl = new FormControl({value: '', disabled: true});
   flagSelected = {
     name: '',
     weight: 0,
@@ -50,13 +56,10 @@ export class GameComponent implements OnInit {
   hintGivenThisRound: boolean = false;
   totalAmountOfFlags: number = 0;
   filteredOptions: Observable<string[]> = new Observable<string[]>();
-  keyboardOut: boolean = false
+  keyboardOut: boolean = false;
+  gameStart: boolean = false;
 
-  constructor(
-    private gameDifficultyService: GameDifficultyService,
-    private route: ActivatedRoute,
-    private platform: Platform
-  ) {
+  constructor() {
     this.route.params.subscribe(() => {
       this.initializeGame();
     })
@@ -88,6 +91,7 @@ export class GameComponent implements OnInit {
       this.hintGivenThisRound = false;
       this.hintText = "";
       this.guessCountryControl.enable();
+      this.gameStart = true;
     });
   }
 
@@ -130,15 +134,16 @@ export class GameComponent implements OnInit {
 
   guessFlag(event: SubmitEvent | MouseEvent) {
     event.preventDefault();
-    console.log(this.guessCountryControl.value?.toLowerCase(), this.flagSelected.name.toLowerCase())
-    if (this.guessCountryControl.value?.toLowerCase().trim() !== this.flagSelected.name.toLowerCase().trim()) {
+    let correctCountryName: string = this.translateService.instant(this.flagSelected.country_code);
+    console.log(this.guessCountryControl.value?.toLowerCase(), this.flagSelected.name.toLowerCase(), correctCountryName.toLowerCase())
+    if (this.guessCountryControl.value?.toLowerCase().trim() !== correctCountryName.toLowerCase().trim()) {
       console.log('err')
       this.guessCountryControl.reset();
       this.guessCountryControl.setErrors({'incorrect': true});
       this.attempts--
       if (this.attempts === 0) {
         this.guessCountryControl.disable();
-        this.hintText = this.flagSelected.name
+        this.hintText = correctCountryName
       }
     } else {
       this.guessCountryControl.reset();
@@ -153,17 +158,18 @@ export class GameComponent implements OnInit {
   }
 
   generateHint() {
+    let correctCountryName: string = this.translateService.instant(this.flagSelected.country_code);
     this.hintGivenThisRound = true;
     this.hintAmount--;
     let hintChance = 3;
     let hintChanceTotal = 0.5;
-    let hintedLettersAmount = this.flagSelected.name.length >= 9 ? 4 : 2;
+    let hintedLettersAmount = correctCountryName.length >= 9 ? 4 : 2;
     let hintedTextAux = "";
-    this.flagSelected.name.split('').forEach((letter) => {
+    correctCountryName.split('').forEach((letter) => {
       if (hintedLettersAmount > 0 && letter !== " ") {
         let chance = Math.random() * 10;
         if (chance > hintChanceTotal) {
-          if (hintedLettersAmount === this.flagSelected.name.length - hintedTextAux.length) {
+          if (hintedLettersAmount === correctCountryName.length - hintedTextAux.length) {
             hintedTextAux = hintedTextAux.concat(letter);
             hintedLettersAmount--;
           } else {
@@ -188,7 +194,7 @@ export class GameComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     if (filterValue.length >= 2) {
-      return this.countries.map(country => country.name).filter(option => option.toLowerCase().includes(filterValue))
+      return this.countries.map(country => this.translateService.instant(country.country_code)).filter(option => option.toLowerCase().includes(filterValue))
     } else {
       return []
     }

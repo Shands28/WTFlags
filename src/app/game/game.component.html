@@ -1,71 +1,87 @@
 <div class="container" [ngStyle]="countries.length === 0 ? {height: '100vh'} : []">
-  <ng-container *ngIf="countries.length > 0; else gameEnded">
+  @if (countries.length > 0 && gameStart) {
     <div class="lives_counter-container">
-      <ng-container *ngIf="attempts >= 1">🤎</ng-container>
-      <ng-container *ngIf="attempts >= 2">💙</ng-container>
-      <ng-container *ngIf="attempts >= 3">💚</ng-container>
-      <ng-container *ngIf="attempts < 2 && attempts > 0">❌</ng-container>
-      <ng-container *ngIf="attempts < 3 && attempts > 0">❌</ng-container>
-      <ng-container *ngIf="attempts === 0">
-        <div class="loser_text-container">
-          {{'no_lives' | translate}}
-        </div>
-        <div class="loser_text-container">
-          <!--          ({{totalAmountOfFlags - countries.length}} Correct / {{3 - attempts}} Errors-->
-          <!--          / {{3 - hintAmount}} Hints used)-->
-          {{'endgame_score' | translate : ({
-            correct: totalAmountOfFlags - countries.length,
-            errors: 3 - attempts,
-            hints: 3 - hintAmount
-          })}}
-        </div>
-        <div>
-          <button mat-raised-button color="accent" (click)="initializeGame()">{{'reset' | translate}}</button>
-        </div>
-      </ng-container>
+      @switch (attempts) {
+        @case (1) {
+          🤎❌❌
+        }
+        @case (2) {
+          💙💙❌
+        }
+        @case (3) {
+          💚💚💚
+        }
+        @case (0) {
+          <div class="loser_text-container">
+            {{ 'no_lives' | translate }}
+          </div>
+          <div class="loser_text-container">
+            {{
+              'endgame_score' | translate : {
+                correct: totalAmountOfFlags - countries.length,
+                errors: 3 - attempts,
+                hints: 3 - hintAmount
+              }
+            }}
+          </div>
+          <div>
+            <button mat-raised-button color="accent" (click)="initializeGame()">{{ 'reset' | translate }}</button>
+          </div>
+        }
+      }
     </div>
     <div class="flag-container">
       <img src="https://flagcdn.com/{{flagSelected.country_code}}.svg"
-           alt="{{'flag_of' | translate}} {{flagSelected.name}}">
+           alt="{{'flag_of' | translate}} {{flagSelected.country_code | translate}}">
     </div>
     <form class="input-container" (submit)="guessFlag($event)">
       <mat-form-field class="country-input">
-        <mat-label>{{'country_name' | translate}}</mat-label>
+        <mat-label>{{ 'country_name' | translate }}</mat-label>
         <input type="text" matInput placeholder="{{'ph_guess' | translate}}" [formControl]="guessCountryControl"
                [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
+          @for (option of filteredOptions | async;track option) {
+            <mat-option [value]="option">
+              {{ option }}
+            </mat-option>
+          }
         </mat-autocomplete>
       </mat-form-field>
-
       <button mat-raised-button class="guess-button" color="primary" (click)="guessFlag($event)" type="button"
               [disabled]="attempts===0">
-        {{'bt_guess' | translate}}
+        {{ 'bt_guess' | translate }}
       </button>
-      <button mat-raised-button color="accent" type="button" class="hint-button" *ngIf="hintAmount > 0"
-              (click)="generateHint()" [disabled]="hintGivenThisRound || attempts === 0">
-        {{'bt_hint' | translate}} {{hintAmount}}/3
-      </button>
+      @if (hintAmount > 0) {
+        <button mat-raised-button color="accent" type="button" class="hint-button" (click)="generateHint()"
+                [disabled]="hintGivenThisRound || attempts === 0">
+          {{ 'bt_hint' | translate }} {{ hintAmount }}/3
+        </button>
+      }
       <div class="hint_text-container">
-        {{hintText}}
+        {{ hintText }}
       </div>
-      <div *ngIf="countries.length < 10 && countries.length > 0">
-        {{'cheer_country_left' | translate: ({countriesLeft: countries.length})}}
-      </div>
+      @if (countries.length < 10 && countries.length > 0) {
+        <div>
+          {{ 'cheer_country_left' | translate: ({countriesLeft: countries.length}) }}
+        </div>
+      }
     </form>
-  </ng-container>
-  <ng-template #gameEnded>
-    <div class="winner_text-container">{{'cheer_gz' | translate}}</div>
-    <div class="winner_subtext-container">{{totalAmountOfFlags}} {{'correct' | translate}}</div>
-    <div class="winner_subtext-container">{{3 - attempts}} {{'errors' | translate}}</div>
-    <div class="winner_subtext-container">{{3 - hintAmount}} {{'hints_used' | translate}}</div>
-    <div class="reset_button-container">
-      <button mat-raised-button color="accent" (click)="initializeGame()">{{'bt_play_again' | translate}}</button>
+  } @else if (countries.length === 0 && !gameStart) {
+    <div>
+      <mat-spinner></mat-spinner>
     </div>
-  </ng-template>
-  <button mat-flat-button color="primary" class="difficulty-button" routerLink=".." *ngIf="!keyboardOut">
-    {{'bt_change_diff' | translate}}
-  </button>
+  } @else {
+    <div class="winner_text-container">{{ 'cheer_gz' | translate }}</div>
+    <div class="winner_subtext-container">{{ totalAmountOfFlags }} {{ 'correct' | translate }}</div>
+    <div class="winner_subtext-container">{{ 3 - attempts }} {{ 'errors' | translate }}</div>
+    <div class="winner_subtext-container">{{ 3 - hintAmount }} {{ 'hints_used' | translate }}</div>
+    <div class="reset_button-container">
+      <button mat-raised-button color="accent" (click)="initializeGame()">{{ 'bt_play_again' | translate }}</button>
+    </div>
+  }
+  @if(!keyboardOut) {
+    <button mat-flat-button color="primary" class="difficulty-button" routerLink="..">
+      {{ 'bt_change_diff' | translate }}
+    </button>
+  }
 </div>
