@@ -57,5 +57,6 @@ export class MenuComponent implements OnInit {
   changeLang(lang: string) {
     console.log(lang)
     this.translateService.use(lang)
+    localStorage.setItem('lang', lang);
   }
 }

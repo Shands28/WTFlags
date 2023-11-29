@@ -23,8 +23,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
-      },
-      defaultLanguage: 'en'
+      }
     }),
     AppRoutingModule,
     HttpClientModule,
