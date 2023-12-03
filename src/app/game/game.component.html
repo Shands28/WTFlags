@@ -3,7 +3,7 @@
     <div class="lives_counter-container">
       @switch (attempts) {
         @case (1) {
-          🤎❌❌
+          💔❌❌
         }
         @case (2) {
           💙💙❌
@@ -30,11 +30,8 @@
         }
       }
     </div>
-    <div class="flag-container">
-      <img src="https://flagcdn.com/{{flagSelected.country_code}}.svg"
-           alt="{{'flag_of' | translate}} {{flagSelected.country_code | translate}}">
-    </div>
-    <form class="input-container" (submit)="guessFlag($event)">
+    <app-flag [flagSelected]="flagSelected"/>
+    <form class="input-container" (submit)="guessFlag()">
       <mat-form-field class="country-input">
         <mat-label>{{ 'country_name' | translate }}</mat-label>
         <input type="text" matInput placeholder="{{'ph_guess' | translate}}" [formControl]="guessCountryControl"
@@ -47,7 +44,7 @@
           }
         </mat-autocomplete>
       </mat-form-field>
-      <button mat-raised-button class="guess-button" color="primary" (click)="guessFlag($event)" type="button"
+      <button mat-raised-button class="guess-button" color="primary" (click)="guessFlag()" type="button"
               [disabled]="attempts===0">
         {{ 'bt_guess' | translate }}
       </button>

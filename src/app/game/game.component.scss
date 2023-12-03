@@ -7,20 +7,6 @@
   margin-top: 2vh;
 }
 
-.flag-container {
-  width: clamp(300px, 50%, 600px);
-  justify-content: center;
-
-  img {
-    border: 0;
-    border-radius: 15px;
-    width: 100%;
-    box-shadow: 3px 0 #f44336, -3px 0 #00e5e5, 0 3px #e0ac08, 0 -3px #2dd36f,
-    2px 2px #f44336, -2px -2px #00e5e5, 2px -2px #e0ac08, -2px 2px #2dd36f;
-    background: #fff;
-  }
-}
-
 .input-container {
   display: flex;
   flex-direction: column;
@@ -28,6 +14,12 @@
   align-items: center;
   flex-wrap: wrap;
   margin-top: 20px;
+}
+
+app-flag {
+  display: flex;
+  justify-content: center;
+  width: clamp(300px, 50%, 500px);
 }
 
 .country-input {

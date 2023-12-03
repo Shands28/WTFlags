@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {GameDifficultyService} from "../services/game-difficulty.service";
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {GameDifficultyService} from "../shared/services/game-difficulty.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {map, Observable, startWith} from "rxjs";
 import {Platform, IonicModule} from "@ionic/angular";
@@ -12,6 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {NgStyle, NgIf, NgFor, AsyncPipe} from '@angular/common';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {Country} from "../shared/interfaces/country";
+import {FlagComponent} from "../shared/components/flag/flag.component";
 
 @Component({
   selector: 'app-game',
@@ -34,6 +36,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     RouterLink,
     AsyncPipe,
     TranslateModule,
+    FlagComponent,
   ],
 })
 export class GameComponent implements OnInit {
@@ -42,14 +45,10 @@ export class GameComponent implements OnInit {
   gameDifficultyService: GameDifficultyService = inject(GameDifficultyService);
   route: ActivatedRoute = inject(ActivatedRoute);
   platform: Platform = inject(Platform);
-  countries: { name: string; weight: number, cumulativeWeight?: number, country_code: string }[] = []
+  countries: Country[] = []
   maxCumulativeWeight: number = 0;
-  guessCountryControl = new FormControl({value: '', disabled: true});
-  flagSelected = {
-    name: '',
-    weight: 0,
-    country_code: ''
-  };
+  guessCountryControl = new FormControl({value: '', disabled: true}, [Validators.required]);
+  flagSelected: Country;
   attempts: number = 0;
   hintAmount: number = 3;
   hintText: string = "";
@@ -102,7 +101,7 @@ export class GameComponent implements OnInit {
     this.maxCumulativeWeight = this.countries[this.countries.length - 1].cumulativeWeight!;
   }
 
-  selectFlag() {
+  selectFlag(): Country {
     let randomWeightedNumber = this.maxCumulativeWeight * Math.random();
     console.log('randomWeightedNumber', randomWeightedNumber);
     for (let i = 0; i < this.countries.length; i++) {
@@ -132,28 +131,29 @@ export class GameComponent implements OnInit {
     }
   }
 
-  guessFlag(event: SubmitEvent | MouseEvent) {
-    event.preventDefault();
+  guessFlag() {
     let correctCountryName: string = this.translateService.instant(this.flagSelected.country_code);
     console.log(this.guessCountryControl.value?.toLowerCase(), this.flagSelected.name.toLowerCase(), correctCountryName.toLowerCase())
-    if (this.guessCountryControl.value?.toLowerCase().trim() !== correctCountryName.toLowerCase().trim()) {
-      console.log('err')
-      this.guessCountryControl.reset();
-      this.guessCountryControl.setErrors({'incorrect': true});
-      this.attempts--
-      if (this.attempts === 0) {
-        this.guessCountryControl.disable();
-        this.hintText = correctCountryName
+    if (this.guessCountryControl.valid) {
+      if (this.guessCountryControl.value?.toLowerCase().trim() !== correctCountryName.toLowerCase().trim()) {
+        console.log('err')
+        this.guessCountryControl.reset('');
+        this.guessCountryControl.setErrors({'incorrect': true});
+        this.attempts--
+        if (this.attempts === 0) {
+          this.guessCountryControl.disable();
+          this.hintText = correctCountryName
+        }
+      } else {
+        this.guessCountryControl.reset('');
+        this.extractCorrectFlag();
+        if (this.countries.length > 0) {
+          this.selectFlag();
+        }
+        this.hintText = "";
+        this.hintGivenThisRound = false;
+        console.log(this.flagSelected)
       }
-    } else {
-      this.guessCountryControl.reset();
-      this.extractCorrectFlag();
-      if (this.countries.length > 0) {
-        this.selectFlag();
-      }
-      this.hintText = "";
-      this.hintGivenThisRound = false;
-      console.log(this.flagSelected)
     }
   }
 
@@ -161,13 +161,13 @@ export class GameComponent implements OnInit {
     let correctCountryName: string = this.translateService.instant(this.flagSelected.country_code);
     this.hintGivenThisRound = true;
     this.hintAmount--;
-    let hintChance = 3;
-    let hintChanceTotal = 0.5;
-    let hintedLettersAmount = correctCountryName.length >= 9 ? 4 : 2;
-    let hintedTextAux = "";
-    correctCountryName.split('').forEach((letter) => {
+    let hintChance: number = 3;
+    let hintChanceTotal: number = 0.5;
+    let hintedLettersAmount: number = correctCountryName.length >= 9 ? 4 : 2;
+    let hintedTextAux: string = "";
+    correctCountryName.split('').forEach((letter: string) => {
       if (hintedLettersAmount > 0 && letter !== " ") {
-        let chance = Math.random() * 10;
+        let chance: number = Math.random() * 10;
         if (chance > hintChanceTotal) {
           if (hintedLettersAmount === correctCountryName.length - hintedTextAux.length) {
             hintedTextAux = hintedTextAux.concat(letter);
@@ -188,7 +188,6 @@ export class GameComponent implements OnInit {
       }
     })
     this.hintText = hintedTextAux.trim();
-
   }
 
   private _filter(value: string): string[] {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {forkJoin, map} from "rxjs";
+import {forkJoin, map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class GameDifficultyService {
   }
 
   getCountriesListByDifficulty(difficulty: string) {
-    let countriesSources: any[] = []
+    let countriesSources: Observable<any>[];
     if (difficulty === '3') {
       countriesSources = [
         this.http.get(`../../assets/countries_easy.json`),
@@ -45,7 +45,5 @@ export class GameDifficultyService {
       ]
       return forkJoin(countriesSources).pipe(map(([easy]: any[]) => easy))
     }
-
-
   }
 }
